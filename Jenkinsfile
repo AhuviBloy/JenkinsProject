@@ -2,12 +2,17 @@ pipeline {
     agent {label 'verisoft-2'}
 
     parameters {
-        string(name: 'REPO_URL', defaultValue: 'https://github.com/tamar240/pipelineProject', description: 'Repository URL')
-        string(name: 'BRANCH_NAME', defaultValue: 'main', description: 'Branch name to build')
+        string(name: 'REPO_URL', defaultValue: 'https://github.com/AhuviBloy/JekinsProject.git', description: 'GitHub repository URL')
+        string(name: 'NAME_BRANCH', defaultValue: 'main', description: 'Branch name to build from')
     }
 
     environment {
         MAIN_BRANCH = 'main'
+    }
+    
+    triggers {
+        cron('30 5 * * 1') // כל יום שני 05:30 בבוקר
+        cron('0 14 * * *') // כל יום 14:00 בצהריים
     }
 
     stages {
