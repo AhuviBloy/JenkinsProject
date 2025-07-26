@@ -19,7 +19,7 @@ pipeline {
         stage('Clone code') {
             steps {
                 script {
-                    if (params.BRANCH_NAME == env.MAIN_BRANCH) {
+                    if (params.NAME_BRANCH == env.MAIN_BRANCH) {
                         checkout scm
                     } else {
                         git branch: "${params.BRANCH_NAME}", url: "${params.REPO_URL}"
@@ -58,8 +58,5 @@ pipeline {
         }
     }
 
- triggers {
-     cron('30 5 * * 1\n0 14 * * *')
- }
 
 }
